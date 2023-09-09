@@ -1,0 +1,76 @@
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+.search-form{
+  padding: 10px;
+background-color: lightblue;
+    display: flex;
+        justify-content: center;
+}
+.search-form input{
+    padding: 8px;
+}
+.search-form button{
+    margin-left: 20px; 
+    background-color: #4d5ae5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+
+
+.gallery{
+margin: 15px 20px;
+    
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+}
+.gallery:not(:last-child){
+    justify-content: space-between;
+}
+.photo-card{
+    width: 350px;
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+.photo-card img{
+width: 350px;
+height: 200px;
+}
+.info{
+display: flex;
+justify-content: space-around;
+
+}
+.info-item{
+display: flex;
+flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;    
+}
