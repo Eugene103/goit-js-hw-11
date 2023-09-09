@@ -5,6 +5,7 @@ import { serviceSearch } from './js/axios';
 import { createMarkup } from './js/createMarkup';
 
 
+
 const elements = {
     searchForm: document.querySelector(`#search-form`),
     galleryContainer: document.querySelector(`.gallery`),
@@ -59,7 +60,8 @@ function addNewSearch(evt) {
     page = page + 1;
     Notiflix.Loading.pulse();
     serviceSearch(elements.searchForm.searchQuery.value, page)
-    .then(data => {
+        .then(data => {
+        
     Notiflix.Loading.remove();
             if (data.hits.length === 0) {
                 Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`)
@@ -90,13 +92,28 @@ function addNewSearch(evt) {
     });
 }
 
-let timeoutId = null;
-window.addEventListener("scroll", function(){      
+window.addEventListener("scroll", throttle(checkPosition, 250)) 
+
+    function checkPosition(evt){
     var contentHeight = elements.galleryContainer.offsetHeight;
     let y = window.scrollY + window.innerHeight;
-   
     if (y >= contentHeight) {
                addNewSearch();
     }
     
-});
+};
+
+function throttle(callee, timeout) {
+  let timer = null
+
+  return function perform(...args) {
+    if (timer) return
+
+    timer = setTimeout(() => {
+      callee(...args)
+
+      clearTimeout(timer)
+      timer = null
+    }, timeout)
+  }
+}
