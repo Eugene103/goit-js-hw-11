@@ -78,16 +78,19 @@ const infinityScroll = new IntersectionObserver(onScroll, { rootMargin: '100px' 
           Notiflix.Loading.pulse();
           serviceSearch(elements.searchForm.searchQuery.value, page)
             .then(data => {
+              console.log(data)
                       Notiflix.Loading.remove();
-            if (data.hits.length === 0) {
-                      Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`)
+            if (data.hits.length <= 40) {
+              scrollDown();
+              Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`)
             } else {
               elements.galleryContainer.insertAdjacentHTML('beforeend', createMarkup(data.hits))
               galleryLightBox.refresh();
               scrollDown();
               infinityScroll.observe(elements.galleryContainer.lastChild);
           }    
-      if (page > data.totalHits / 40) {
+              if (page > data.totalHits / 40) {
+        
             infinityScroll.unobserve(elements.galleryContainer.lastChild);
           }                   
                   })
